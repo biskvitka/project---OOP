@@ -2,20 +2,23 @@
 #ifndef LIST1_H
 #define LIST1_H
 
-//konstruktor
+
+// Konstruktor
 template <typename T>
 List<T>::List()
 {
 	start = NULL;
 	_end = NULL;
 }
-//destructor
+
+// Destructor
 template <typename T>
 List<T>::~List(){
 	this->clear();
 }
 
-//add element to the front of the list
+
+// Adds element to the front of the list
 template <typename T>
 void List<T>::push_front(const T& value){
 	Node* current = new Node;
@@ -36,7 +39,7 @@ void List<T>::push_front(const T& value){
 	start = current;
 }
 
-//add a node to the end of the list
+// Adds a node to the end of the list
 template <typename T>
 void List<T>::push_back(const T& value){
 	Node* current = new Node;
@@ -57,20 +60,20 @@ void List<T>::push_back(const T& value){
 
 }
 
-//shows the element at the beginning of the list
+// Shows the element at the beginning of the list
 template <typename T>
 T& List<T>::front() {
 	return start->m_data;
 }
 
-//shows the element at the end of the list
+// Shows the element at the end of the list
 template <typename T>
 T& List<T>::back(){
 	return _end->m_data;
 
 }
 
-//delete the last element of the list
+// Deletes the last element of the list
 template <typename T>
 void List<T>::pop_back(){
 	if (_end)
@@ -90,7 +93,7 @@ void List<T>::pop_back(){
 
 }
 
-//delete the first element of the list
+// Delete the first element of the list
 template <typename T>
 void List<T>::pop_front(){
 	if (start)
@@ -108,7 +111,7 @@ void List<T>::pop_front(){
 	}
 }
 
-//gives the size of the list
+// Gives the size of the list
 template <typename T>
 int List<T>::size(){
 	Node* current = start;
@@ -121,23 +124,28 @@ int List<T>::size(){
 	return size;
 }
 
-//Is the list empty?
+// Is the list empty?
 template <typename T>
 bool List<T>::empty() const{
 	return start == NULL;
 }
 
 
-//deletes the nodes of the list
+// Deletes the nodes of the list
 template <typename T>
 void List<T>::clear(){
+
 	while (_end != NULL){
-		cout << this->back() << endl;
 		this->pop_back();
 	}
+
 }
 
-//functions with the iterator
+//
+// Functions with the iterator:
+//
+
+// Insert an element on position iterator
 template<typename T>
 void List<T>::insert(iterator& it, const T& value){
 
@@ -156,10 +164,11 @@ void List<T>::insert(iterator& it, const T& value){
 		current->m_next = it.iter;
 		it.iter->m_data = value;
 	}
+
 }
 
 
-//Function that let the user erese the element on position iterator
+// Function that let the user erese the element on position iterator
 
 template<typename T>
 void List<T>::erase(iterator& it){
@@ -184,7 +193,5 @@ void List<T>::erase(iterator& it){
 
 }
 
-
-
-
+	
 #endif LIST1_H
