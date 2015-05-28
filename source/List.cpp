@@ -3,7 +3,7 @@
 #define LIST1_H
 
 
-// Konstruktor
+// Construktor
 template <typename T>
 List<T>::List()
 {
