@@ -36,7 +36,7 @@ public:
 	public:
 		Node* iter;
 
-		// Konstructor
+		// Constructor
 		iterator() : iter(NULL) {}
 
 		// Operator that returns the value of the node where the iterator points to
