@@ -3,7 +3,7 @@
 #include"List.cpp"
 
 using namespace std;
-int main(){
+int main() {
 
 		List<int> list1;
 		list1.push_front(100); 
@@ -25,9 +25,10 @@ int main(){
 		list2.push_front(313);
 		list2.push_back(777);
 
-		//Извежда 313 515 616 777
-		for (List<int>::iterator it = list2.begin(); it != list2.end(); it++)
-		{   cout << *it << " ";  }  
+		//Output 313 515 616 777
+		for (auto it = list2.begin(); it != list2.end(); it++) {
+            cout << *it << " ";
+        }  
 		cout << endl;
 
 		List<string> list3;
@@ -36,9 +37,10 @@ int main(){
 		List<string>::iterator iter = list3.begin();
 		list3.insert(iter, "Veni");
 		
-		//Извежда Veni vidi vici 
-		for (List<string>::iterator it = list3.begin(); it != list3.end(); it++)  
-		{   cout << *it << " ";  }  
+		//Output Veni vidi vici 
+		for (auto it = list3.begin(); it != list3.end(); it++) {
+            cout << *it << " ";
+        }  
 		
 		cout << endl;
 		List<string> list4;
@@ -46,16 +48,19 @@ int main(){
 		list4.push_back("et");
 		list4.push_back("impera");
 		
-		//Извежда Divide et impera 
-		for (List<string>::iterator it = list4.begin(); it != list4.end(); it++) 
-		{   cout << *it << " ";  }  
+		//output Divide et impera 
+		for (auto it = list4.begin(); it != list4.end(); it++) {
+            cout << *it << " ";
+        }  
 		
 		cout << endl;
-		List<string>::iterator mid = ++list4.begin(); 
+		auto mid = ++list4.begin(); 
 		list4.erase(mid);
-		//Извежда Divide impera  
-		for (List<string>::iterator it = list4.begin(); it != list4.end(); it++)  {
-			cout << *it << " ";  }    cout << endl;
+		//Output Divide impera  
+		for (auto it = list4.begin(); it != list4.end(); it++) {
+			cout << *it << " ";  
+        }
+        cout << endl;
 
 	return 0;
 }

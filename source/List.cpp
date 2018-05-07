@@ -2,90 +2,74 @@
 #ifndef LIST1_H
 #define LIST1_H
 
-
-// Construktor
 template <typename T>
-List<T>::List()
-{
+List<T>::List() {
 	start = NULL;
-	_end = NULL;
+	last = NULL;
 }
 
-// Destructor
 template <typename T>
-List<T>::~List(){
+List<T>::~List() {
 	this->clear();
 }
 
-
-// Adds element to the front of the list
 template <typename T>
-void List<T>::push_front(const T& value){
+void List<T>::push_front(const T& value) {
 	Node* current = new Node;
 	assert(current != NULL);
 
 	current->m_data = value;
 	current->m_prev = NULL;
 
-	if (start){
+	if (start) {
 		current->m_next = start;
 		start->m_prev = current;
-	}
-	else{
+	} else {
 		current->m_next = NULL;
-		_end = current;
+		last = current;
 
 	}
 	start = current;
 }
 
-// Adds a node to the end of the list
 template <typename T>
-void List<T>::push_back(const T& value){
+void List<T>::push_back(const T& value) {
 	Node* current = new Node;
 	assert(current != NULL);
 	current->m_data = value;
 	current->m_next = NULL;
 
-	if (_end != NULL){
-		_end->m_next = current;
-		current->m_prev = _end;
-	}
-	else
-	{
+	if (last != NULL) {
+		last->m_next = current;
+		current->m_prev = last;
+	} else {
 		start = current;
 		current->m_prev = NULL;
 	}
-	_end = current;
+	last = current;
 
 }
 
-// Shows the element at the beginning of the list
 template <typename T>
 T& List<T>::front() {
 	return start->m_data;
 }
 
-// Shows the element at the end of the list
 template <typename T>
-T& List<T>::back(){
-	return _end->m_data;
+T& List<T>::back() {
+	return last->m_data;
 
 }
 
-// Deletes the last element of the list
 template <typename T>
-void List<T>::pop_back(){
-	if (_end)
-	{
-		Node *current = _end;
-		if (_end->m_prev)
-		{
-			_end = _end->m_prev;
-			_end->m_next = NULL;
-		}
-		else{
-			_end = NULL;
+void List<T>::pop_back() {
+	if (last == NULL) {
+		Node *current = last;
+		if (last->m_prev) {
+			last = last->m_prev;
+			last->m_next = NULL;
+		} else {
+			last = NULL;
 			start = NULL;
 		}
 		delete current;
@@ -93,67 +77,55 @@ void List<T>::pop_back(){
 
 }
 
-// Delete the first element of the list
 template <typename T>
-void List<T>::pop_front(){
-	if (start)
-	{
+void List<T>::pop_front() {
+	if (start) {
 		Node *current = start;
-		if (start->m_next){
+		if (start->m_next) {
 			start = start->m_next;
 			start->m_prev = NULL;
-		}
-		else{
-			_end = NULL;
+		} else {
+			this->last = NULL;
 			start = NULL;
 		}
 		delete current;
 	}
 }
 
-// Gives the size of the list
 template <typename T>
-int List<T>::size(){
+int List<T>::size() {
 	Node* current = start;
 	int size = 0;
 
-	while (current != NULL){
+	while (current != NULL) {
 		size++;
 		current = current->m_next;
 	}
 	return size;
 }
 
-// Is the list empty?
 template <typename T>
-bool List<T>::empty() const{
+bool List<T>::empty() const {
 	return start == NULL;
 }
 
 
-// Deletes the nodes of the list
 template <typename T>
 void List<T>::clear(){
 
-	while (_end != NULL){
+	while (last != NULL) {
 		this->pop_back();
 	}
 
 }
 
-//
-// Functions with the iterator:
-//
-
-// Insert an element on position iterator
 template<typename T>
-void List<T>::insert(iterator& it, const T& value){
+void List<T>::insert(iterator& it, const T& value) {
 
-	if (it.iter == start){
+	if (it.iter == start) {
 		this->push_front(value);
 		it.iter = start;
-	}
-	else{
+	} else {
 		Node *current = it.iter;
 		it.iter = new Node;
 		assert(it.iter != NULL);
@@ -167,22 +139,15 @@ void List<T>::insert(iterator& it, const T& value){
 
 }
 
-
-// Function that let the user erese the element on position iterator
-
 template<typename T>
-void List<T>::erase(iterator& it){
-	if (it.iter == start)
-	{
+void List<T>::erase(iterator& it) {
+	if (it.iter == start) {
 		this->pop_front();
 		it.iter = start;
-	}
-	else if (it.iter == _end)
-	{
+	} else if (it.iter == last) {
 		this->pop_back();
-		it.iter = _end;
-	}
-	else{
+		it.iter = last;
+	} else {
 		Node* current = it.iter->m_next;
 		current->m_prev = it.iter->m_prev;
 		delete it.iter;
@@ -194,4 +159,4 @@ void List<T>::erase(iterator& it){
 }
 
 	
-#endif LIST1_H
+#endif
